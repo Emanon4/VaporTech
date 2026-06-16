@@ -709,8 +709,8 @@ section { position: relative; }
 .work-grid {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 张竖版抖音风一字排开 */
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr); /* 3 列大卡：6 张正好 3+3，无孤儿 */
+  gap: 22px;
 }
 .work {
   display: flex;
