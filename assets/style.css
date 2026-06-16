@@ -919,6 +919,48 @@ section { position: relative; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
 /* =========================================================
+   背景音乐开关（默认静音，点击播放）
+   ========================================================= */
+.bgm {
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 120;
+  width: 50px; height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(10, 3, 26, 0.7);
+  border: 1.5px solid var(--cyan);
+  box-shadow: var(--glow-cyan);
+  cursor: pointer;
+  touch-action: manipulation;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.14s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.bgm:active { transform: scale(0.94); }
+@media (hover: hover) { .bgm:hover { box-shadow: 0 0 26px rgba(33, 247, 212, 0.7); } }
+.bgm-bars { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+.bgm-bars i { width: 3px; height: 6px; border-radius: 2px; background: var(--cyan); }
+.bgm.playing { border-color: var(--pink); box-shadow: 0 0 24px rgba(255, 106, 213, 0.6); }
+.bgm.playing .bgm-bars i { background: var(--pink); animation: eq 0.9s ease-in-out infinite; }
+.bgm.playing .bgm-bars i:nth-child(2) { animation-delay: 0.15s; }
+.bgm.playing .bgm-bars i:nth-child(3) { animation-delay: 0.3s; }
+.bgm.playing .bgm-bars i:nth-child(4) { animation-delay: 0.45s; }
+@keyframes eq { 0%, 100% { height: 5px; } 50% { height: 18px; } }
+
+.foot-credit-row { text-align: center; padding: 0 24px 22px; }
+.foot-credit {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  transition: color 0.18s ease;
+}
+@media (hover: hover) { .foot-credit:hover { color: var(--cyan); } }
+
+/* =========================================================
    滚动入场
    ========================================================= */
 .js .reveal {

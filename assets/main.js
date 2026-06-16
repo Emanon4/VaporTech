@@ -45,6 +45,8 @@
       "follow.wx": "商务合作", "follow.wxsub": "微信 qianpai857 · 点击复制",
       "foot.copy": "© 2026 蒸汽电波 VaporTech · 用想象力构建 · 托管于 GitHub Pages",
       "foot.top": "回到顶部 ↑",
+      "foot.music": "♪ 背景音乐 glaciære · CC BY 4.0",
+      "bgm.play": "播放背景音乐", "bgm.pause": "暂停背景音乐",
       "_title": "蒸汽电波 VaporTech · AI 创作内容厂牌",
       "_copied": "已复制微信号", "_copyfail": "复制失败，请手动复制：qianpai857"
     },
@@ -88,6 +90,8 @@
       "follow.wx": "Business", "follow.wxsub": "WeChat qianpai857 · click to copy",
       "foot.copy": "© 2026 蒸汽电波 VaporTech · built with imagination · hosted on GitHub Pages",
       "foot.top": "Back to top ↑",
+      "foot.music": "♪ Music: glaciære · CC BY 4.0",
+      "bgm.play": "Play background music", "bgm.pause": "Pause background music",
       "_title": "蒸汽电波 VaporTech · AI creative studio",
       "_copied": "WeChat ID copied", "_copyfail": "Copy failed, copy manually: qianpai857"
     },
@@ -131,6 +135,8 @@
       "follow.wx": "お仕事", "follow.wxsub": "WeChat qianpai857 · クリックでコピー",
       "foot.copy": "© 2026 蒸汽电波 VaporTech · 想像力で構築 · GitHub Pages 配信",
       "foot.top": "トップへ ↑",
+      "foot.music": "♪ 音楽: glaciære · CC BY 4.0",
+      "bgm.play": "背景音楽を再生", "bgm.pause": "背景音楽を停止",
       "_title": "蒸汽电波 VaporTech · AIクリエイティブスタジオ",
       "_copied": "WeChat IDをコピーしました", "_copyfail": "コピー失敗。手動でコピー: qianpai857"
     }
@@ -162,6 +168,11 @@
       var key = el.getAttribute("data-i18n-aria");
       if (dict[key] != null) el.setAttribute("aria-label", dict[key]);
     });
+    // 背景音乐按钮在播放态时，aria-label 用「暂停」而非默认的「播放」
+    var bgmB = document.getElementById("bgm");
+    if (bgmB && bgmB.classList.contains("playing") && dict["bgm.pause"]) {
+      bgmB.setAttribute("aria-label", dict["bgm.pause"]);
+    }
     document.documentElement.setAttribute("lang", LANGS[lang]);
     document.title = dict["_title"];
     document.querySelectorAll(".lang button").forEach(function (b) {
@@ -261,6 +272,27 @@
           document.body.removeChild(ta);
           ok();
         } catch (e) { fail(); }
+      }
+    });
+  }
+
+  /* ---------------- 背景音乐（默认静音，点击播放） ---------------- */
+  var bgmBtn = document.getElementById("bgm");
+  var bgmAudio = document.getElementById("bgmAudio");
+  if (bgmBtn && bgmAudio) {
+    bgmAudio.volume = 0.45;
+    bgmBtn.addEventListener("click", function () {
+      if (bgmAudio.paused) {
+        bgmAudio.play().then(function () {
+          bgmBtn.classList.add("playing");
+          bgmBtn.setAttribute("aria-pressed", "true");
+          bgmBtn.setAttribute("aria-label", I18N[current]["bgm.pause"]);
+        }).catch(function () {});
+      } else {
+        bgmAudio.pause();
+        bgmBtn.classList.remove("playing");
+        bgmBtn.setAttribute("aria-pressed", "false");
+        bgmBtn.setAttribute("aria-label", I18N[current]["bgm.play"]);
       }
     });
   }

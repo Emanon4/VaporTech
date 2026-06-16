@@ -245,7 +245,16 @@
       <span class="foot-copy" data-i18n="foot.copy">© 2026 蒸汽电波 VaporTech · 用想象力构建 · 托管于 GitHub Pages</span>
       <a href="#top" class="foot-top" data-i18n="foot.top">回到顶部 &#8593;</a>
     </div>
+    <div class="foot-credit-row">
+      <a class="foot-credit" href="https://archive.org/details/glaciaerepoolwaterblue" target="_blank" rel="noopener" data-i18n="foot.music">&#9834; 背景音乐 glaciære · CC BY 4.0</a>
+    </div>
   </footer>
+
+  <!-- 背景音乐：默认静音，点击才播放（尊重浏览器自动播放策略与可访问性） -->
+  <button class="bgm" id="bgm" type="button" aria-label="播放背景音乐" data-i18n-aria="bgm.play" aria-pressed="false">
+    <span class="bgm-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <audio id="bgmAudio" src="assets/bgm.mp3" loop preload="none"></audio>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
