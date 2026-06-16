@@ -709,7 +709,7 @@ section { position: relative; }
 .work-grid {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 竖版抖音风一字排开 */
+  grid-template-columns: repeat(6, 1fr); /* 6 张竖版抖音风一字排开 */
   gap: 18px;
 }
 .work {
@@ -858,6 +858,14 @@ section { position: relative; }
   font-family: var(--font-display);
   font-weight: 900;
   font-size: 19px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+/* 小红书等辅平台卡的紧凑数据行 */
+.flink-mini { font-size: 13px; color: var(--ink-soft); margin-top: 3px; }
+.flink-mini b {
+  font-family: var(--font-display);
+  font-weight: 900;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
