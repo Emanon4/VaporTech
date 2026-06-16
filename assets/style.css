@@ -835,7 +835,7 @@ section { position: relative; }
 /* 抖音主卡 */
 .flink.dy {
   --fc: var(--pink);
-  padding: 26px;
+  padding: 20px 24px;
   background:
     radial-gradient(120% 140% at 0% 0%, rgba(255, 106, 213, 0.18), transparent 58%),
     radial-gradient(120% 140% at 100% 100%, rgba(33, 247, 212, 0.15), transparent 58%),
