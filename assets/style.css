@@ -709,8 +709,8 @@ section { position: relative; }
 .work-grid {
   margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 列大卡：6 张正好 3+3，无孤儿 */
-  gap: 22px;
+  grid-template-columns: repeat(5, 1fr); /* 5 张竖版一字排开 */
+  gap: 18px;
 }
 .work {
   display: flex;
