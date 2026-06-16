@@ -57,6 +57,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-h);
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip; /* 防止任何宽元素在移动端撑大布局视口导致整页缩放 */
 }
 
 body {
@@ -108,6 +109,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   inset: 0;
   z-index: -2;
   overflow: hidden;
+  contain: layout paint; /* 隔离变形/超宽背景，避免其影响外部布局与视口宽度 */
   background:
     radial-gradient(120% 80% at 50% 8%, #1c0a3e 0%, var(--bg-1) 42%, var(--bg-0) 100%);
 }
@@ -300,8 +302,7 @@ body.scrolled-deep .bg-sun { opacity: 0.16; }
   padding: 5px 10px;
   border-radius: var(--r-pill);
   cursor: pointer;
-  min-height: 36px;
-  min-width: 40px;
+  min-height: 34px;
   touch-action: manipulation;
   transition: color 0.18s ease, background-color 0.18s ease;
 }
@@ -482,9 +483,10 @@ section { position: relative; }
   line-height: 1.6;
   color: var(--ink);
   text-wrap: balance;
-  word-break: keep-all; /* 防止中文绑定词（如“限制”）被拆到两行 */
   max-width: 22ch;
 }
+/* keep-all 只给中文：防绑定词（如“限制”）被拆行。日文需任意换行，否则长假名串会溢出导致整页被缩放 */
+:lang(zh) .hero-tagline { word-break: keep-all; }
 .hero-sub {
   margin-top: 12px;
   color: var(--ink-soft);
@@ -906,6 +908,9 @@ section { position: relative; }
 
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
+  .nav-inner { padding-left: 16px; padding-right: 16px; gap: 12px; }
+  .nav-right { gap: 10px; }
+  .lang button { padding: 5px 9px; }
   .nav-links {
     position: absolute;
     top: var(--nav-h);
