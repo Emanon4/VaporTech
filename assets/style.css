@@ -718,6 +718,8 @@ section { position: relative; }
   gap: 12px;
   transition: transform 0.2s ease;
 }
+/* 标题在 DOM 中排在封面前（读屏先读标题），用 order 让封面仍在视觉上方 */
+.work-cover { order: -1; }
 .work-cover {
   position: relative;
   aspect-ratio: 3 / 4; /* 竖版视频封面 */
@@ -770,7 +772,12 @@ section { position: relative; }
   font-size: 12px;
   letter-spacing: 0.03em;
   color: #fff;
-  text-shadow: 0 1px 4px #000;
+  /* 深色药丸底：保证白字在任意封面上都达 WCAG AA，不依赖封面明暗 */
+  background: rgba(8, 2, 18, 0.7);
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 .views::before { content: "\25B7"; color: var(--cyan); font-size: 11px; }
 .work-title {
